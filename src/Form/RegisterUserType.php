@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
@@ -23,11 +24,27 @@ class RegisterUserType extends AbstractType
                      'placeholder' => "Indiquez votre adress email"
                 ]
             ])
-            ->add('password', PasswordType::class, [
-                'label' => "Votre mot de passe",
-                'attr' => [
-                     'placeholder' => "Chisissez votre mot de passe"
-                ]
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options' => [
+                      'label' => "Votre mot de passe",
+                      'attr' => [
+                            'placeholder' => "Chisissez votre mot de passe"
+                    ],
+                    'hash_property_path' => 'password'
+                ],
+                
+              
+                
+                'second_options' => [
+                      'label' => "Confirmez Votre mot de passe",
+                      'attr' => [
+                            'placeholder' => "Confirmez votre mot de passe"
+                    ]
+                ],
+                'mapped' => false,
+                
+              
             ])
             ->add('firstname', TextType::class, [
                 'label' => "Votre prénom",
