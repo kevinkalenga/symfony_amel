@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Symfony\Component\Validator\Constraints\Length;
+
 
 class RegisterUserType extends AbstractType
 {
@@ -26,12 +28,16 @@ class RegisterUserType extends AbstractType
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
+                
+                'constraints' => [
+                    new Length(min: 4, max: 30)
+                ],
                 'first_options' => [
                       'label' => "Votre mot de passe",
                       'attr' => [
                             'placeholder' => "Chisissez votre mot de passe"
                     ],
-                    'hash_property_path' => 'password'
+                    'hash_property_path' => 'password',
                 ],
                 
               
@@ -48,12 +54,18 @@ class RegisterUserType extends AbstractType
             ])
             ->add('firstname', TextType::class, [
                 'label' => "Votre prénom",
+                'constraints' => [
+                     new Length(min: 4, max: 30)
+                ],
                 'attr' => [
                      'placeholder' => "Indiquez votre prénom"
                 ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => "Votre nom",
+                'constraints' => [
+                     new Length(min: 4, max: 30)
+                ],
                 'attr' => [
                      'placeholder' => "Indiquez votre nom"
                 ]
@@ -70,7 +82,10 @@ class RegisterUserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+           
+        'data_class' => User::class,
+   
+
         ]);
     }
 }
