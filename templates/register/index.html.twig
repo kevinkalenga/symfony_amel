@@ -2,10 +2,17 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-   <div class="container my-5">
-      <h1>Inscription</h1>
-      {{form(registerForm)}}
+   <div class="my-5 container">
+         <h1 class="text-center">Inscription</h1>
+        <div class="d-flex flex-col justify-content-center align-items-center"> 
+           
+           <div class="col-md-6">
+             {{form(registerForm)}}
+            </div>
+         </div>
       <br>
-      Avez-vous deja un compte ? <a href="{{path('app_login')}}">Connectez-vous</a>
+      <p class="text-center">
+        Avez-vous deja un compte ? <a href="{{path('app_login')}}">Connectez-vous</a>
+      </p>
    </div>
 {% endblock %}
