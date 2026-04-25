@@ -22,6 +22,7 @@ class DashboardController extends AbstractDashboardController
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
         return $this->redirect($adminUrlGenerator->setController(CategoryCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(ProductCrudController::class)->generateUrl());
         
 
        
@@ -48,6 +49,11 @@ class DashboardController extends AbstractDashboardController
             CategoryCrudController::class,
             'Categories',
             'fas fa-list'
+        );
+        yield MenuItem::linkTo(
+            ProductCrudController::class,
+            'Produits',
+            'fas fa-tag'
         );
     }
 }

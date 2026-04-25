@@ -79,6 +79,12 @@ class Category
         return $this;
     }
 
+    // Afficher un string
+    public function __toString() 
+    {
+        return $this->name;
+    }
+
     public function removeProduct(Product $product): static
     {
         if ($this->products->removeElement($product)) {
