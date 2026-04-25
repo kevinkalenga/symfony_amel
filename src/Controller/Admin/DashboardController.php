@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -21,6 +21,7 @@ class DashboardController extends AbstractDashboardController
         //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(CategoryCrudController::class)->generateUrl());
         
 
        
@@ -42,6 +43,11 @@ class DashboardController extends AbstractDashboardController
             UserCrudController::class,
             'Utilisateurs',
             'fas fa-user'
+        );
+        yield MenuItem::linkTo(
+            CategoryCrudController::class,
+            'Categories',
+            'fas fa-list'
         );
     }
 }
