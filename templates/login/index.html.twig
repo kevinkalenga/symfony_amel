@@ -9,11 +9,11 @@
           <div>{{error.messageKey|trans(error.messageData, 'security')}}</div>
       {% endif %}
       <form action="{{path('app_login')}}" method="post">
-         <label for="username">Votre email:</label>
-         <input class="form-control" type="text" id="username" name="_username" value="{{last_username}}" />
+           <label for="username">Votre email:</label>
+           <input class="form-control" type="text" id="username" name="_username" value="{{last_username}}" />
          
-         <label for="password">Votre mot de passe :</label>
-         <input class="form-control" type="password" id="password" name="_password" />
+           <label for="password">Votre mot de passe :</label>
+           <input class="form-control" type="password" id="password" name="_password" />
 
          <input type="hidden" name="_target_path" value="{{path('app_account')}}" />
 
