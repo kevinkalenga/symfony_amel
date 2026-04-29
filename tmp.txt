@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Twig;
+
+use Twig\Extension\AbstractExtension;
+
+use App\Repository\CategoryRepository;
+
+use Twig\Extension\GlobalsInteface;
+
+use Twig\TwigFilter;
+
+class Extensions extends AbstractExtension implements GlobalsInterface 
+{
+     private $categoryRepository;
+
+     public function __construct(CategoryRepository $categoryRepository)
+     {
+        $this->categoryRepository = $categoryRepository;
+     }
+
+     public function getFilters()
+     {
+        return [
+            new TwigFilter('price', [$this, 'formatPrice']),
+        ];
+     }
+     
+    
+     public function formatPrice($num)
+     {
+        return number_format($num, '2', ',').' €';
+     }
+
+    //  fonction permettant d'afficher toutes les categories 
+
+    public function getGlobals(): array 
+    {
+        // Creation de la variable globale 
+
+        return [
+            'allCategories' => $this->categoryRepository->findAll(),
+        ];
+    }
+}
