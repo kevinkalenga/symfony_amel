@@ -64,7 +64,7 @@ class Product
         return $this;
     }
 
-    // une fonction permettant de retourner le prix avec tva 
+    // une fonction permettant de retourner le prix avec tva(prix du produit + tva) 
     public function getPriceWithTaxe()
     {
         $coeff = 1 + ($this->tva / 100);

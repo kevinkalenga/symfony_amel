@@ -10,9 +10,11 @@
      <div class="row">
         {% for product in category.products %}
             <div class="col-md-3 text-center">
-               <img src="/uploads/{{product.illustration}}" class="img-fluid" alt="" />
+                
+                   <img src="/uploads/{{product.illustration}}" class="img-fluid" alt="" />
+               
                <strong>{{product.name}}</strong>
-               <strong>{{product.getPriceWithTaxe}}</strong>
+               <span class="d-block">{{product.getPriceWithTaxe}}</span>
             </div>
 
         {% endfor %}
