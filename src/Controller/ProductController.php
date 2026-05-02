@@ -14,7 +14,7 @@ final class ProductController extends AbstractController
     {
 
         $product = $productRepository->findOneBySlug($slug);
-        // dd($product);
+        //  dd($product);
        
         if(!$product) {
             return $this->redirectToRoute('app_home');
