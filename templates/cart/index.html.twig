@@ -6,7 +6,29 @@
          <h1 class="text-center">Mon panier</h1>
         <div class="row"> 
            <div class="col-md-8">
-              Produit acheté
+           
+               {% for product in cart %}
+                 <div class="row mt-2">
+                    <div class="col-md-2">
+                    {# object venant de la method add de Cart.php #}
+                       <img src="/uploads/{{product.object.illustration}}" class="img-fluid" alt="{{product.object.name}}" /> 
+                    </div>
+                    <div class="col-md-6">
+                       <strong>{{product.object.name}}</strong>
+                       <span class="d-block small">Prix :
+								{{ product.object.getPriceWithTaxe|price}}</span>
+                    </div>
+                    <div class="col-md-2 text-right">
+                       <span class="badge text-bg-secondary">x{{product.qty}}</span>
+                    </div>
+                    <div class="col-md-2">
+                       <strong>x{{(product.qty * product.object.getPriceWithTaxe)|price}}</strong>
+                    </div>
+                 
+                 </div>
+
+
+              {% endfor %} 
            </div>
            <div class="col-md-4">
               resumé du panier
