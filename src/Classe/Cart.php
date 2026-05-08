@@ -33,6 +33,20 @@ class Cart
     }
 
     // fonction permettant de supprimer totalement le panier
+    public function decreaseCart($id)
+    {
+        //  Recup de panier stocké en session 
+         $cart = $this->requestStack->getSession()->get('cart', []);
+         if($cart[$id]['qty'] > 1) {
+             $cart[$id]['qty'] = $cart[$id]['qty']-1;
+         } else {
+            unset($cart[$id]);
+         }
+
+          // Sauvegarder le panier 
+         $this->requestStack->getSession()->set('cart', $cart);   
+    }
+    // fonction permettant de supprimer totalement le panier
     public function removeCart()
     {
       return $this->requestStack->getSession()->remove('cart', []);

@@ -39,7 +39,7 @@ final class CartController extends AbstractController
                       'cart' => $cart->getCart()
                 ]);
     }
-    // La route permettant d'ajouter un produit dans le panier
+    // La route permettant à la suppression du panier
     #[Route('/panier/supprimer', name: 'app_cart_remove')]
     public function remove(Cart $cart): Response
     {
@@ -51,5 +51,13 @@ final class CartController extends AbstractController
            );
     
             return $this->redirectToRoute('app_home');
+    }
+    // La route permettant à la reduction de la quantité de produit du panier
+    #[Route('/panier/reduction/{id}', name: 'app_cart_decrease')]
+    public function decrease($id, Cart $cart): Response
+    {
+           $cart->decreaseCart($id);
+    
+            return $this->redirectToRoute('app_cart');
     }
 }
